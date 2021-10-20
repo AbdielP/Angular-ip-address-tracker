@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from './../../services/api.service';
 import { DetailsIp } from 'src/app/interfaces/details-ip';
@@ -17,6 +17,8 @@ export class MapComponent implements OnInit {
   private publicIp: PublicIp;
   private ipDetails: DetailsIp
 
+  @Output() details = new EventEmitter<DetailsIp>();
+
   constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
@@ -24,7 +26,7 @@ export class MapComponent implements OnInit {
   }
 
   private createMap(): void {
-    this.map = L.map('map').setView([this.ipDetails.lat, this.ipDetails.lng], 13); // Lat, long, zoom
+    this.map = L.map('map').setView([this.ipDetails.lat, this.ipDetails.lng], 13); // Lat, lng, zoom
     L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${this.KEY}`, {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
@@ -38,14 +40,13 @@ export class MapComponent implements OnInit {
   }
 
   private addMarker() {
-    L.marker([this.ipDetails.lat, -79.53548]).addTo(this.map)
+    L.marker([this.ipDetails.lat, this.ipDetails.lng]).addTo(this.map)
     .bindPopup(`Lat: ${this.ipDetails.lat}, Lng: ${this.ipDetails.lng}`)
     .openPopup();
   }
 
   private getPublicIp(): void {
     this.apiservice.getPublicIp().subscribe((publicIp: PublicIp) => {
-      console.log(publicIp)
       this.publicIp = publicIp;
       this.getIpAddressInfo(this.publicIp);
     });
@@ -54,6 +55,7 @@ export class MapComponent implements OnInit {
   private getIpAddressInfo(publicIp: PublicIp): void {
     this.apiservice.getIpAddressInfo(publicIp).subscribe((ipDetails: DetailsIp) => {
       this.ipDetails = ipDetails;
+      this.details.emit(this.ipDetails);
       this.createMap();
     })
   }

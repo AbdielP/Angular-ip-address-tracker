@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { DetailsIp } from 'src/app/interfaces/details-ip';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  @Input() details: Observable<DetailsIp>;
+  eventSubscription: Subscription;
 
   ngOnInit(): void {
+    this.subscribeIpDetails();
+  }
+
+  ngOnDestroy(): void {
+    this.eventSubscription.unsubscribe();
+  }
+
+  private subscribeIpDetails(): void {
+    this.eventSubscription = this.details.subscribe((details: DetailsIp) => {
+      console.log(details);
+    })
   }
 
 }
