@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from './../../services/api.service';
+import { PublicIp } from 'src/app/interfaces/public-ip';
 import * as L from 'leaflet';
 
 @Component({
@@ -14,7 +15,7 @@ export class MapComponent implements OnInit {
   private lat = environment.lat;
   private lng = environment.lng;
   private map: L;
-  private publicIp: string;
+  private publicIp: PublicIp;
 
   constructor(private apiservice: ApiService) { }
 
@@ -44,13 +45,13 @@ export class MapComponent implements OnInit {
   }
 
   private getPublicIp(): void {
-    this.apiservice.getPublicIp().subscribe((publicIp: string) => {
+    this.apiservice.getPublicIp().subscribe((publicIp: PublicIp) => {
       this.publicIp = publicIp;
-    // this.getIpAddressInfo(this.publicIp);
+      // this.getIpAddressInfo(this.publicIp);
     });
   }
 
-  private getIpAddressInfo(publicIp: string): void {
+  private getIpAddressInfo(publicIp: PublicIp): void {
     this.apiservice.getIpAddressInfo(publicIp).subscribe((ipAddressDetails: any) => {
       console.log(ipAddressDetails)
     })
