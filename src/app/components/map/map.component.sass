@@ -1,0 +1,10 @@
+@import '../../../assets/sass/config'
+
+@mixin calcHeight()
+    height: calc(100vh - #{$header-height})
+
+.map
+    width: 100%
+    background: red
+    @include calcHeight()
+
