@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
 
+import { PublicIp } from 'src/app/interfaces/public-ip'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,11 +16,19 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getIpAddressInfo() {
-    return this.http.get(`${this.URL}at_7SXU1ElscER15BLhHOmTbAZrMqpZD&ipAddress=${this.fakeip}`)
+  getPublicIp() {
+    return this.http.get('https://api.ipify.org?format=json')
+    .pipe(map((resp: PublicIp) => {
+      return resp['ip'];
+    }),(catchError(err => [
+      console.log(err)
+    ])));
+  }
+
+  getIpAddressInfo(publicIp: string) {
+    return this.http.get(`${this.URL}at_7SXU1ElscER15BLhHOmTbAZrMqpZD&ipAddress=${publicIp}`)
     .pipe(map((resp: any) => {
-      // return resp['estado'][0];
-      console.log(resp);
+      return resp;
     }),(catchError(err => [
       console.log(err)
     ])));

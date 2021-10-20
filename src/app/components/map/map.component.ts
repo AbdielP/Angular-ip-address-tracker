@@ -13,13 +13,14 @@ export class MapComponent implements OnInit {
   private KEY = environment.MaxpboxKey;
   private lat = environment.lat;
   private lng = environment.lng;
-  map: L;
+  private map: L;
+  private publicIp: string;
 
   constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
-    this.getIpAddressInfo();
-    this.createMap();
+    this.getPublicIp();
+    // this.createMap();
   }
 
   private createMap(): void {
@@ -33,7 +34,7 @@ export class MapComponent implements OnInit {
       accessToken: `${this.KEY}`
     }).addTo(this.map);
 
-   this.addMarker();
+    this.addMarker();
   }
 
   private addMarker() {
@@ -42,8 +43,17 @@ export class MapComponent implements OnInit {
     .openPopup();
   }
 
-  private getIpAddressInfo(): void {
-    this.apiservice.getIpAddressInfo().subscribe()
+  private getPublicIp(): void {
+    this.apiservice.getPublicIp().subscribe((publicIp: string) => {
+      this.publicIp = publicIp;
+    // this.getIpAddressInfo(this.publicIp);
+    });
+  }
+
+  private getIpAddressInfo(publicIp: string): void {
+    this.apiservice.getIpAddressInfo(publicIp).subscribe((ipAddressDetails: any) => {
+      console.log(ipAddressDetails)
+    })
   }
 
 }
