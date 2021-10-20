@@ -11,6 +11,8 @@ import * as L from 'leaflet';
 export class MapComponent implements OnInit {
 
   private KEY = environment.MaxpboxKey;
+  private lat = environment.lat;
+  private lng = environment.lng;
   map: L;
 
   constructor(private apiservice: ApiService) { }
@@ -21,7 +23,7 @@ export class MapComponent implements OnInit {
   }
 
   private createMap(): void {
-    this.map = L.map('map').setView([8.95255, -79.53548], 13); // Lat, long, zoom
+    this.map = L.map('map').setView([this.lat, this.lng], 13); // Lat, long, zoom
     L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${this.KEY}`, {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
@@ -35,8 +37,8 @@ export class MapComponent implements OnInit {
   }
 
   private addMarker() {
-    L.marker([8.95255, -79.53548]).addTo(this.map)
-    .bindPopup('Lat: 8.95255, Lng: -79.53548')
+    L.marker([this.lat, -79.53548]).addTo(this.map)
+    .bindPopup(`Lat: ${this.lat}, Lng: ${this.lng}`)
     .openPopup();
   }
 

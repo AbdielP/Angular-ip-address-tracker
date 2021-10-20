@@ -10,12 +10,12 @@ export class ApiService {
 
   private KEY = environment.IPifyKey;
   private URL = 'https://geo.ipify.org/api/v2/country,city?apiKey='
-  // 186.74.72.54
+  private fakeip = environment.iptest;
 
   constructor(private http: HttpClient) { }
 
   getIpAddressInfo() {
-    return this.http.get(`${this.URL}at_7SXU1ElscER15BLhHOmTbAZrMqpZD&ipAddress=186.74.72.54`)
+    return this.http.get(`${this.URL}at_7SXU1ElscER15BLhHOmTbAZrMqpZD&ipAddress=${this.fakeip}`)
     .pipe(map((resp: any) => {
       // return resp['estado'][0];
       console.log(resp);
