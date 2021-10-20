@@ -13,8 +13,7 @@ import { DetailsIp } from 'src/app/interfaces/details-ip';
 export class ApiService {
 
   private KEY = environment.IPifyKey;
-  private URL = 'https://geo.ipify.org/api/v2/country,city?apiKey='
-  private fakeip = environment.iptest;
+  private URL = 'https://geo.ipify.org/api/v2/country,city?apiKey=';
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +32,11 @@ export class ApiService {
       const details: DetailsIp = {
         ip: resp['ip'],
         isp: resp['isp'],
-        location: resp['location']
+        city: resp['location'].city,
+        lat: resp['location'].lat,
+        lng: resp['location'].lng,
+        region: resp['location'].region,
+        timezone: resp['location'].timezone
       }
       return details;
     }),(catchError(err => [

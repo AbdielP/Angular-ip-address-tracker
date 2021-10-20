@@ -1,5 +1,9 @@
 export interface DetailsIp {
     ip: string,
     isp: string,
-    location: object;
+    city: string,
+    lat: number,
+    lng: number,
+    region: string,
+    timezone: string
 }
