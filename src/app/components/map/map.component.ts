@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { ApiService } from './../../services/api.service';
 import * as L from 'leaflet';
 
 @Component({
@@ -9,12 +10,13 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements OnInit {
 
-  private KEY = environment.IPifyToken;
+  private KEY = environment.MaxpboxKey;
   map: L;
 
-  constructor() { }
+  constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
+    this.getIpAddressInfo();
     this.createMap();
   }
 
@@ -29,9 +31,17 @@ export class MapComponent implements OnInit {
       accessToken: `${this.KEY}`
     }).addTo(this.map);
 
+   this.addMarker();
+  }
+
+  private addMarker() {
     L.marker([8.95255, -79.53548]).addTo(this.map)
     .bindPopup('Lat: 8.95255, Lng: -79.53548')
     .openPopup();
+  }
+
+  private getIpAddressInfo(): void {
+    this.apiservice.getIpAddressInfo().subscribe()
   }
 
 }
