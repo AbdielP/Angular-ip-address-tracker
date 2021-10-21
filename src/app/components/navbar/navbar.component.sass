@@ -51,9 +51,30 @@
 .nav__info
     z-index: 1
     position: absolute
-    bottom: -20px
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    bottom: -50%
     width: 90%
-    height: 100px
+    height: 300px
     background: $color-white
-    padding: 5px
+    padding: 25px
     border-radius: $border-radius
+    
+    border: 1px solid #ccc
+
+.info__container
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.info__container-subtitle
+    color: $dark-gray
+    text-transform: uppercase
+    font-size: 10.5px
+    font-weight: 500
+    letter-spacing: 1.2px
+
+.info__container-data 
+    color: $very-dark-gray
+    font-weight: 500
