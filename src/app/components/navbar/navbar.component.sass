@@ -1,5 +1,11 @@
 @import '../../../assets/sass/config'
 
+@mixin inputStyles()
+    font-size: 18px
+    border: none
+    padding: 20px
+    height: 100%
+
 .nav 
     display: flex
     position: relative
@@ -13,12 +19,41 @@
     height: $header-height
     padding: 25px
 
+.nav__title
+    color: $color-white
+    font-weight: 400
+
+.nav__form
+    display: flex
+    align-items: center
+    border-radius: $border-radius
+    overflow: hidden
+    width: 100%
+    height: 60px
+
+.nav__form-input
+    @include inputStyles()
+    width: 90%
+    &::placeholder
+        font-size: 14px
+    
+.nav__form-button
+    @include inputStyles()
+    display: flex
+    color: $color-white
+    background: #000
+    border: 1px solid #000
+    border-radius: 0 $border-radius $border-radius 0
+
+.nav__form-img 
+    align-self: center
+
 .nav__info
+    z-index: 1
     position: absolute
     bottom: -20px
     width: 90%
     height: 100px
-    // background: #fff
-    background: green
+    background: $color-white
     padding: 5px
-    border-radius: 10px
+    border-radius: $border-radius

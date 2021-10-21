@@ -26,10 +26,10 @@ export class MapComponent implements OnInit {
   }
 
   private createMap(): void {
-    this.map = L.map('map').setView([this.ipDetails.lat, this.ipDetails.lng], 17); // Lat, lng, zoom
+    this.map = L.map('map').setView([this.ipDetails.lat, this.ipDetails.lng], 18); // Lat, lng, zoom
     L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${this.KEY}`, {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
+      maxZoom: 22,
       id: 'mapbox/streets-v11',
       tileSize: 512,
       zoomOffset: -1,
@@ -48,14 +48,14 @@ export class MapComponent implements OnInit {
   private getPublicIp(): void {
     this.apiservice.getPublicIp().subscribe((publicIp: PublicIp) => {
       this.publicIp = publicIp;
-      // this.getIpAddressInfo(this.publicIp);
+      this.getIpAddressInfo(this.publicIp);
     });
   }
 
   private getIpAddressInfo(publicIp: PublicIp): void {
     this.apiservice.getIpAddressInfo(publicIp).subscribe((ipDetails: DetailsIp) => {
       this.ipDetails = ipDetails;
-      this.details.emit(this.ipDetails);
+      // this.details.emit(this.ipDetails);
       this.createMap();
     })
   }
