@@ -10,6 +10,7 @@ import { DetailsIp } from 'src/app/interfaces/details-ip';
 export class AppComponent {
   title = 'angular-ip-address-tracker';
   eventIpDetails: Subject<DetailsIp> = new Subject<DetailsIp>();
+  eventSearchIp: Subject<string> = new Subject<string>();
 
   // Receive public ip address details from 'map' child component.
   ipDetails(details: DetailsIp): void {
@@ -17,7 +18,8 @@ export class AppComponent {
     this.eventIpDetails.next(details);
   }
 
+  // Receive search param from navbar component
   search(ipaddress: string): void {
-    console.log(ipaddress);
+    this.eventSearchIp.next(ipaddress);
   }
 }

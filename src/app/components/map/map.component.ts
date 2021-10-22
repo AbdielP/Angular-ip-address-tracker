@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from './../../services/api.service';
 import { DetailsIp } from 'src/app/interfaces/details-ip';
 import { PublicIp } from 'src/app/interfaces/public-ip';
+import { Observable, Subscription } from 'rxjs';
 import * as L from 'leaflet';
 
 @Component({
@@ -18,11 +19,18 @@ export class MapComponent implements OnInit {
   private ipDetails: DetailsIp
 
   @Output() details = new EventEmitter<DetailsIp>();
+  @Input() searchIp: Observable<string>;
+  eventSubscription: Subscription;
 
   constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
     this.getPublicIp();
+    this.subscribeSearch();
+  }
+
+  ngOnDestroy(): void {
+    this.eventSubscription.unsubscribe();
   }
 
   private createMap(): void {
@@ -45,6 +53,7 @@ export class MapComponent implements OnInit {
     .openPopup();
   }
 
+  // Find your own public IP
   private getPublicIp(): void {
     this.apiservice.getPublicIp().subscribe((publicIp: PublicIp) => {
       this.publicIp = publicIp;
@@ -60,4 +69,12 @@ export class MapComponent implements OnInit {
     })
   }
 
+  private subscribeSearch(): void {
+    this.eventSubscription = this.searchIp.subscribe((ipaddress: string) => {
+      console.log(ipaddress);
+      // Aquí vas a llamar al servicio para buscar details 
+      // Luego vas a mostrar la nueva ubicación en el mapa
+      // emitiras la info al navbar devuelta para mostrar los details
+    });
+  }
 }

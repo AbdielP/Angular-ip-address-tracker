@@ -1,3 +1,3 @@
 <app-navbar [details]="eventIpDetails.asObservable()" (searchIp)="search($event)"></app-navbar>
-<app-map (details)="ipDetails($event)"></app-map>
+<app-map [searchIp]="eventSearchIp.asObservable()" (details)="ipDetails($event)"></app-map>
 <!-- <router-outlet></router-outlet> -->
