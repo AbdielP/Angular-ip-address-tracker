@@ -10,6 +10,7 @@ import { DetailsIp } from 'src/app/interfaces/details-ip';
 export class NavbarComponent implements OnInit {
 
   @Input() details: Observable<DetailsIp>;
+  ipInfo: DetailsIp;
   eventSubscription: Subscription;
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
   private subscribeIpDetails(): void {
     this.eventSubscription = this.details.subscribe((details: DetailsIp) => {
       console.log(details);
+      this.ipInfo = details;
     })
   }
 

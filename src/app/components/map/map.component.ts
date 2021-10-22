@@ -48,7 +48,7 @@ export class MapComponent implements OnInit {
   private getPublicIp(): void {
     this.apiservice.getPublicIp().subscribe((publicIp: PublicIp) => {
       this.publicIp = publicIp;
-      // this.getIpAddressInfo(this.publicIp);
+      this.getIpAddressInfo(this.publicIp);
     });
   }
 
