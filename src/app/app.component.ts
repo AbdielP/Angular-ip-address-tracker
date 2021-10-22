@@ -16,4 +16,8 @@ export class AppComponent {
     // Emit public ip address details to 'navbar' child component.
     this.eventIpDetails.next(details);
   }
+
+  search(ipaddress: string): void {
+    console.log(ipaddress);
+  }
 }
