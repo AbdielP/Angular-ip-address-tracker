@@ -87,6 +87,9 @@
     font-weight: 500
     font-size: 1.3em
 
+.hr
+    display: none
+
 @media (min-width: 1000px)
     .nav
         height: 280px
@@ -101,5 +104,38 @@
     .nav__info
         max-width: 1105px
         flex-direction: row
+        justify-content: center
+        align-items: center
         height: $desktop-header-height
         bottom: -28%
+        // padding: 15px
+        overflow-y: visible
+    
+    .info__container 
+        align-items: flex-start
+        text-align: left
+        width: 25%
+        // background: red
+        height: 100%
+        padding: 20px 15px 5px 35px
+        text-overflow: ellipsis
+        white-space: pre-wrap
+        overflow: hidden
+        &:nth-child(1) 
+            padding-left: 5px
+
+    .info__container-subtitle
+        font-size: 12px
+
+    .info__container-data
+        margin-top: 6px
+        font-size: 1.5rem
+        // overflow: auto
+
+    .hr
+        display: block
+        margin-top: 20px
+        height: 55%
+        border-color: rgba(219, 219, 219, .4)
+        // border: none
+        // border: .5px solid $dark-gray
