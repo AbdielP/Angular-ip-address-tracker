@@ -15,12 +15,13 @@ export class AppComponent {
 
   // Receive public ip address details from 'map' child component.
   ipDetails(details: DetailsIp): void {
-    // Emit public ip address details to 'navbar' child component.
+    // Emit own public ip address details to 'navbar' child component.
     this.eventIpDetails.next(details);
   }
 
   // Receive search param from navbar component
   search(ipaddress: PublicIp): void {
+    // Emit search param  to 'map' child component.
     this.eventSearchIp.next(ipaddress);
   }
 }
