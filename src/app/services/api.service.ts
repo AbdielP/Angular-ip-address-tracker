@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { PublicIp } from 'src/app/interfaces/public-ip';
 import { DetailsIp } from 'src/app/interfaces/details-ip';
+import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,14 @@ export class ApiService {
   private KEY = environment.IPifyKey;
   private URL = 'https://geo.ipify.org/api/v2/country,city?apiKey=';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorService: ErrorHandlerService) { }
 
   getPublicIp(): Observable<PublicIp> {
     return this.http.get('https://api.ipify.org?format=json')
     .pipe(map((resp: string) => {
       return resp['ip'];
     }),(catchError(err => [
-      console.log(err)
+      this.errorService.simpleErrorHandler(err)
     ])));
   }
 
@@ -40,7 +41,7 @@ export class ApiService {
       }
       return details;
     }),(catchError(err => [
-      console.log(err)
+      this.errorService.simpleErrorHandler(err)
     ])));
   }
 

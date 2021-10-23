@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
   constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
-    // this.getPublicIp();
+    this.getPublicIp();
     this.subscribeSearch();
   }
 
@@ -71,7 +71,7 @@ export class MapComponent implements OnInit {
       this.ipDetails = ipDetails;
       this.details.emit(this.ipDetails);
       this.createMap();
-    })
+    });
   }
 
   // Search public IP Address
