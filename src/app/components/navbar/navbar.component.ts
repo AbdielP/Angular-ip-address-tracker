@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
 
   private subscribeIpDetails(): void {
     this.eventSubscription = this.details.subscribe((details: DetailsIp) => {
-      // console.log(details);
       this.ipInfo = details;
     })
   }
