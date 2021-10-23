@@ -48,8 +48,13 @@ export class MapComponent implements OnInit {
   }
 
   private addMarker() {
-    L.marker([this.ipDetails.lat, this.ipDetails.lng]).addTo(this.map)
-    // .bindPopup(`Lat: ${this.ipDetails.lat}, Lng: ${this.ipDetails.lng}`)
+    const customIcon = L.icon({
+      iconUrl: '../../../assets/img/icon-location.svg',
+      iconAnchor:   [22, 60],
+      popupAnchor:  [1, -60]
+    });
+    L.marker([this.ipDetails.lat, this.ipDetails.lng], { icon: customIcon }).addTo(this.map)
+    .bindPopup(`Lat: ${this.ipDetails.lat}, Lng: ${this.ipDetails.lng}`)
     .openPopup();
   }
 
