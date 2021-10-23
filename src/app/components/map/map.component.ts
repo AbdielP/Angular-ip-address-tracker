@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
   private ipDetails: DetailsIp
 
   @Output() details = new EventEmitter<DetailsIp>();
-  @Input() searchIp: Observable<string>;
+  @Input() searchIp: Observable<PublicIp>;
   eventSubscription: Subscription;
 
   constructor(private apiservice: ApiService) { }
@@ -49,7 +49,7 @@ export class MapComponent implements OnInit {
 
   private addMarker() {
     L.marker([this.ipDetails.lat, this.ipDetails.lng]).addTo(this.map)
-    .bindPopup(`Lat: ${this.ipDetails.lat}, Lng: ${this.ipDetails.lng}`)
+    // .bindPopup(`Lat: ${this.ipDetails.lat}, Lng: ${this.ipDetails.lng}`)
     .openPopup();
   }
 
@@ -69,12 +69,15 @@ export class MapComponent implements OnInit {
     })
   }
 
+  // Search public IP Address
   private subscribeSearch(): void {
-    this.eventSubscription = this.searchIp.subscribe((ipaddress: string) => {
-      console.log(ipaddress);
-      // Aquí vas a llamar al servicio para buscar details 
-      // Luego vas a mostrar la nueva ubicación en el mapa
-      // emitiras la info al navbar devuelta para mostrar los details
+    this.eventSubscription = this.searchIp.subscribe((ipaddress: PublicIp) => {
+      this.apiservice.getIpAddressInfo(ipaddress).subscribe((ipDetails: DetailsIp) => {
+        this.ipDetails = ipDetails;
+        this.details.emit(this.ipDetails);
+        this.map.remove();
+        this.createMap();
+      });
     });
   }
 }

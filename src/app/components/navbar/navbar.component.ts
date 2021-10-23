@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
+import { PublicIp } from 'src/app/interfaces/public-ip';
 import { DetailsIp } from 'src/app/interfaces/details-ip';
 
 @Component({
@@ -11,7 +12,7 @@ import { DetailsIp } from 'src/app/interfaces/details-ip';
 export class NavbarComponent implements OnInit {
 
   @Input() details: Observable<DetailsIp>;
-  @Output() searchIp = new EventEmitter<string>();
+  @Output() searchIp = new EventEmitter<PublicIp>();
   ipInfo: DetailsIp;
   eventSubscription: Subscription;
 
@@ -38,7 +39,7 @@ export class NavbarComponent implements OnInit {
     if(!form.valid) {
       return;
     }
-    const ipaddress: string = form.controls.ip.value;
+    const ipaddress: PublicIp = form.controls.ip.value;
     this.searchIp.emit(ipaddress);
   }
 

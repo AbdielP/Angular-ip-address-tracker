@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
+import { PublicIp } from 'src/app/interfaces/public-ip';
 import { DetailsIp } from 'src/app/interfaces/details-ip';
 
 @Component({
@@ -10,7 +11,7 @@ import { DetailsIp } from 'src/app/interfaces/details-ip';
 export class AppComponent {
   title = 'angular-ip-address-tracker';
   eventIpDetails: Subject<DetailsIp> = new Subject<DetailsIp>();
-  eventSearchIp: Subject<string> = new Subject<string>();
+  eventSearchIp: Subject<PublicIp> = new Subject<PublicIp>();
 
   // Receive public ip address details from 'map' child component.
   ipDetails(details: DetailsIp): void {
@@ -19,7 +20,7 @@ export class AppComponent {
   }
 
   // Receive search param from navbar component
-  search(ipaddress: string): void {
+  search(ipaddress: PublicIp): void {
     this.eventSearchIp.next(ipaddress);
   }
 }
