@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   @Output() searchIp = new EventEmitter<PublicIp>();
   ipInfo: DetailsIp;
   eventSubscription: Subscription;
+  spinner: boolean = true;
 
   form = {
     ip: ''
@@ -30,6 +31,7 @@ export class NavbarComponent implements OnInit {
 
   private subscribeIpDetails(): void {
     this.eventSubscription = this.details.subscribe((details: DetailsIp) => {
+      this.spinner = false;
       this.ipInfo = details;
     })
   }
@@ -40,6 +42,7 @@ export class NavbarComponent implements OnInit {
     }
     const ipaddress: PublicIp = form.controls.ip.value;
     this.searchIp.emit(ipaddress);
+    this.spinner = true;
   }
 
 }

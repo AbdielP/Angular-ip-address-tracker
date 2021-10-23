@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
   constructor(private apiservice: ApiService) { }
 
   ngOnInit(): void {
-    this.getPublicIp();
+    // this.getPublicIp();
     this.subscribeSearch();
   }
 
