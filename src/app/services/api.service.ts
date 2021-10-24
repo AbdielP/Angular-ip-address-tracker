@@ -28,7 +28,7 @@ export class ApiService {
   }
 
   getIpAddressInfo(publicIp: PublicIp): Observable<void | DetailsIp> {
-    return this.http.get(`${this.URL}at_7SXU1ElscER15BLhHOmTbAZrMqpZD&ipAddress=${publicIp}`)
+    return this.http.get(`${this.URL}${this.KEY}&ipAddress=${publicIp}`)
     .pipe(map((resp: DetailsIp) => {
       const details: DetailsIp = {
         ip: resp['ip'],
