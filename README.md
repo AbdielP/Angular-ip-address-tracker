@@ -38,8 +38,8 @@ IP Address data and locations is provided by the [ipfy](https://www.ipify.org/) 
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/angular-ip-address-tracker-OQNnXgACk)
+- Live Site URL: [Add live site URL here](https://abdielp.github.io/Angular-ip-address-tracker)
 
 ## My process
 
@@ -140,3 +140,4 @@ Styles made with [Sass](https://sass-lang.com/)
 - Website - (not yet, working on content to show)
 - Frontend Mentor - [@AbdielP](https://www.frontendmentor.io/profile/AbdielP)
 - GitHub - [@AbdielP](https://github.com/AbdielP)
+- Twitter - [@abdiel262](https://twitter.com/Abdiel262)
