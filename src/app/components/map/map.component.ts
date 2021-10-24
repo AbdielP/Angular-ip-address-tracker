@@ -6,13 +6,16 @@ import { PublicIp } from 'src/app/interfaces/public-ip';
 import { Observable, Subscription } from 'rxjs';
 import * as L from 'leaflet';
 
+declare const require: any;
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.sass']
 })
 export class MapComponent implements OnInit {
-
+  
+  svgMarker = require('src/assets/img/icon-location.svg').default
   private KEY = environment.MaxpboxKey;
   private map: L;
   private publicIp: PublicIp;
@@ -54,7 +57,7 @@ export class MapComponent implements OnInit {
 
   private addMarker() {
     const customIcon = L.icon({
-      iconUrl: '../../../assets/img/icon-location.svg',
+      iconUrl: this.svgMarker,
       iconAnchor:   [22, 60],
       popupAnchor:  [1, -60]
     });

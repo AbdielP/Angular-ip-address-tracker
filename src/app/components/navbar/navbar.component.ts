@@ -4,6 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { PublicIp } from 'src/app/interfaces/public-ip';
 import { DetailsIp } from 'src/app/interfaces/details-ip';
 
+declare const require: any;
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -11,12 +13,13 @@ import { DetailsIp } from 'src/app/interfaces/details-ip';
 })
 export class NavbarComponent implements OnInit {
 
+  svgSpinner = require('src/assets/img/spinner-solid.svg').default;
+  svgArrow = require('src/assets/img/icon-arrow.svg').default;
   @Input() details: Observable<DetailsIp>;
   @Output() searchIp = new EventEmitter<PublicIp>();
   ipInfo: DetailsIp;
   eventSubscription: Subscription;
   spinner: boolean = true;
-
   form = {
     ip: ''
   }
