@@ -121,8 +121,13 @@
               "devServerTarget": "angular-ip-address-tracker:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "angular-ip-address-tracker"
 }

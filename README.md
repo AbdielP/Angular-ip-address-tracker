@@ -30,7 +30,9 @@ The users should be able to:
 
 ---
 
-For the mapping API, I do used [Mapbox](https://www.mapbox.com/). It's require an API Key to work, but give you 200k free tile requests. I also tried [leafletjs](https://leafletjs.com/), It's free and doesn't requiere an API Key, but finally decided for Mapbox. IP Address data and locations is provided by the [ipfy](https://www.ipify.org/) API.
+For the mapping API, I do used [Mapbox](https://www.mapbox.com/). 
+I also tried [leafletjs](https://leafletjs.com/), It's free and doesn't requiere an API Key, but finally decided for Mapbox. 
+IP Address data and locations is provided by the [ipfy](https://www.ipify.org/) API.
 
 ---
 

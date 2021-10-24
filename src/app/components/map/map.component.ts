@@ -44,6 +44,11 @@ export class MapComponent implements OnInit {
       accessToken: `${this.KEY}`
     }).addTo(this.map);
 
+    // !IMPORTANT:  This is the Leaflet map API. Although this one is free and no need a KEY, I've preferred to use Mapbox.
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    // }).addTo(this.map)
+
     this.addMarker();
   }
 
