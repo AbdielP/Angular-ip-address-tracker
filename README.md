@@ -104,7 +104,7 @@ getIpAddressInfo(publicIp: PublicIp): Observable<void | DetailsIp> {
 ```
 I also did some extra work setting a simple error-handler service to catch API errors, as 403 Forbidden responses. 
 
-Basic form validation for the IP address field. It compares with a regular expression if the search parameter is a valid IPv4 or IPv6.
+Basic form validation for the IP address field.
 ![SVG Spinner](./src/assets/captures/validation.png)
 
 And I also placed a spinner to know that data is being loaded.
