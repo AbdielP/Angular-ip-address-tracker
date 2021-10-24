@@ -1,4 +1,5 @@
 <nav class="nav">
+
     <h1 class="nav__title">IP Address Tracker</h1>
     <form autocomplete="off" #form="ngForm" class="nav__form">
         <input class="nav__form-input" type="text" name="ip" [ngModel]="form.ip" placeholder="Search for any IP address or domain" required 
@@ -33,4 +34,5 @@
             <h2 class="info__container-data">{{ipInfo.isp}}</h2>
         </div>
     </section>
+    
 </nav>
