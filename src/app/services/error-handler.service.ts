@@ -18,11 +18,5 @@ export class ErrorHandlerService {
       });
       return;
     }
-    // Any response
-    Swal.fire(
-      'Problem?',
-      `${err.error.messages}`,
-      'question'
-    )
   }
 }
